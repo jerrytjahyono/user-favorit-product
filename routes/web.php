@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/laravel',function(){
     return view('welcome');
 });
+
+Route::get('/',function(){
+    $categories = auth()->user()->userCategories()->get();
+    $view = "TODO: CREATE VIEW";
+    return view($view,["categories"=>$categories]);
+});
+
+route::post("/category",[CategoryController::class,'createCategory']);
+route::delete("/category/{categoryId}",[CategoryController::class,'deleteCategory']);
+route::get('/category/{category}/update',[CategoryController::class,'editVieForCategory']);
+route::put('/category/{category}/update',[CategoryController::class,'editCategory']);
