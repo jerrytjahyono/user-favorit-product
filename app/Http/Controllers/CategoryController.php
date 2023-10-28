@@ -10,7 +10,7 @@ class CategoryController extends Controller
 
     public function createCategory(Request $nameCategory){
         $category=$nameCategory->validate([
-            "name"=> 'required'
+            "name"=>'required'
             ]);
         $category['user_id']=auth()->id();
         Category::create($category);
@@ -23,12 +23,12 @@ class CategoryController extends Controller
     }
 
     public function editViewForCategory(Category $category){
-        return view('TODO View',['category'=>$category]);
+        return view('Make View',['category'=>$category]);
     }
 
     public function editCategory(Category $category, Request $request){
         $data=$request->validate([
-            'name' => 'required'
+            'name'=>'required'
         ]);
         $category->update($data);
         return redirect('/');
