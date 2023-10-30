@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->integer('id')->nullable(false);
-            $table->foreignId('category_id')->constrained('categories');
+            $table->id();
+            $table->boolean('isOwned');
             $table->timestamps();
         });
     }
