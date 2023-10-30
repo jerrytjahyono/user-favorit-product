@@ -40,6 +40,7 @@ route::put('/category/{id}/update',[CategoryController::class,'editCategory']);
 route::delete('/category-product/{id}',[CategoryController::class,'deleteProductInCategoryProduct']);
 route::post('/category-product', [CategoryController::class,'addProductToCategory']);
 
+
 route::post('/login',[UserController::class,'login']);
 route::post('/register',[UserController::class,'register']);
 route::post('/logout',[UserController::class,'logout']);
