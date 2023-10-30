@@ -19,6 +19,7 @@ Route::get('/laravel',function(){
     return view('welcome');
 });
 
+
 Route::get('/',function(){
     $categories = auth()->user()->userCategories()->get();
     $view = "TODO: CREATE VIEW";

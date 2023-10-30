@@ -21,7 +21,7 @@ class CategoryController extends Controller{
     }
 
     public function deleteCategory(Category $category){
-        $category->delete();    
+        $category->delete();
         return redirect('/');   
     }
 
@@ -37,6 +37,25 @@ class CategoryController extends Controller{
         return redirect('/');
     }
   
+    public function addProductToCategory(Request $request){
+        $data = $request->validate([
+            'id'=>'required',
+            'category_id'=>'required'
+        ]);
+        
+         try {
+             Product::findOrfail($data['id']);
+         } catch (ModelNotFoundException $th) {
+                 Product::create([
+                     'id' => $data['id'],
+                 ]); 
+         }  
+
+        CategoryProduct::create([
+            "product_id"=> $data["id"],
+            "category_id"=> $data["category_id"],
+        ]);
+
     public function addProductToCategory(Request $request){
         $data = $request->validate([
             'id'=>'required',
