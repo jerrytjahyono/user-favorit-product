@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     public function userCategories(){
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class,'user_id');
     }
 
 }
