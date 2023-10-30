@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller{
 
+
     public function createCategory(Request $nameCategory){
         $category=$nameCategory->validate([
             "name"=>'required'
@@ -20,7 +21,7 @@ class CategoryController extends Controller{
     }
 
     public function deleteCategory(Category $category){
-        $category->delete();
+        $category->delete();    
         return redirect('/');   
     }
 
@@ -35,7 +36,7 @@ class CategoryController extends Controller{
         $category->update($data);
         return redirect('/');
     }
-
+  
     public function addProductToCategory(Request $request){
         $data = $request->validate([
             'id'=>'required',
@@ -63,5 +64,4 @@ class CategoryController extends Controller{
         return redirect('/');   
     }
     
-
 }
