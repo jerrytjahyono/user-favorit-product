@@ -15,14 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/laravel',function(){
     return view('welcome');
 });
 
 
 Route::get('/',function(){
     $categories = auth()->user()->userCategories()->get();
-
     $view = "TODO: CREATE VIEW";
     return view($view,["categories"=>$categories]);
 });
@@ -39,4 +38,3 @@ route::get('/category/{id}/update',[CategoryController::class,'editVieForCategor
 route::put('/category/{id}/update',[CategoryController::class,'editCategory']);
 route::delete('/category-product/{id}',[CategoryController::class,'deleteProductInCategoryProduct']);
 route::post('/category-product', [CategoryController::class,'addProductToCategory']);
-
