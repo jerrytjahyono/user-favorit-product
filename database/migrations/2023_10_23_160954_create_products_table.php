@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->integer('id')->nullable(false);
+            $table->id();
             $table->boolean('isOwned');
             $table->timestamps();
         });

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,15 @@ Route::get('/',function(){
     return view($view,["categories"=>$categories]);
 });
 
+route::get('/category/{id}', function(string $id){
+    $category = Category::find($id);
+    $categoryProducts=$category->categoryProducts()->get();
+    return view('TODO',['products'=>$categoryProducts]);
+});
+
 route::post("/category",[CategoryController::class,'createCategory']);
-route::delete("/category/{categoryId}",[CategoryController::class,'deleteCategory']);
-route::get('/category/{category}/update',[CategoryController::class,'editVieForCategory']);
-route::put('/category/{category}/update',[CategoryController::class,'editCategory']);
+route::delete('/category/{id}',[CategoryController::class,'deleteCategory']);
+route::get('/category/{id}/update',[CategoryController::class,'editVieForCategory']);
+route::put('/category/{id}/update',[CategoryController::class,'editCategory']);
+route::delete('/category-product/{id}',[CategoryController::class,'deleteProductInCategoryProduct']);
+route::post('/category-product', [CategoryController::class,'addProductToCategory']);
